@@ -70,7 +70,6 @@ def evaluate_from_history(history_model):
 
 
 #%% :Plots
-get_ipython().run_line_magic('matplotlib', 'inline')
 plt.rcParams['axes.labelsize'] = 14
 plt.rcParams['xtick.labelsize'] = 12
 plt.rcParams['ytick.labelsize'] = 12
@@ -139,7 +138,7 @@ data.replace(categories, inplace=True)
 
 
 #%%
-columns =  ['condition', 'speaker','gender',
+columns = ['condition', 'speaker', 'gender',
             'age','duration', 'f0_mean', 'f0_min', 'f0_max',
             'F1.25', 'F1.50', 'F1.75', 'F2.25', 'F2.50', 
             'F2.75', 'F3.25', 'F3.50', 'F3.75', 'F4.25', 
@@ -177,7 +176,7 @@ model1_cvscores = []
 model1_history_main = [] # This will save the results from all cross-validations
 model1 = Sequential()
 model1.add(Dense(300, input_dim=24, activation='relu'))
-model1.add(Dense(300, activation='relu'))   
+model1.add(Dense(300, activation='relu'))
 model1.add(Dense(1, kernel_initializer='uniform', activation='sigmoid'))
 sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model1.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['accuracy'])
@@ -191,7 +190,7 @@ for train_index, test_index in group_kfold.split(np.log(X), y, speaker):
     # Transform X_Test  
     X_test_transformed = scaler.transform(X_test)
 
-    model1_history = model1.fit(X_train_transformed, y_train, validation_data=(X_test_transformed, y_test),epochs=80, batch_size=35)
+    model1_history = model1.fit(X_train_transformed, y_train, validation_data=(X_test_transformed, y_test), epochs=80, batch_size=35)
 
 
     # Evaluate classifiers
@@ -284,12 +283,6 @@ model1_cvscores
 #%%
 history_model1 = model1_history_main
 evaluate_from_history(history_model1)
-
-
-#%%
-for i in model1_history_main:
-    print(i)
-
 
 #%%
 print("Model 2: 2 Hidden Layers")
@@ -1598,9 +1591,4 @@ print("\n\n\n======\nModel 9\n======\n")
 evaluate_from_history(history_model9)
 print("\n\n\n======\nModel 10\n======\n")
 evaluate_from_history(history_model10)
-
-
-#%%
-
-
 
