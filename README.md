@@ -6,7 +6,7 @@ Journal paper available at [Frontiers Neurology](https://www.frontiersin.org/art
 
 * Update (8/3/18): Jupyter Notebook Converted to py file with cells.
 
-* Update (6/5/19): Current updates in Jupyter and Keras create backward compatibility issues to users depending on their system.
+* Update (6/5/19): Current Jupyter and Keras updates may create backward compatibility issues.
 
 # Introduction
 This paper contains code for comparing different structures of neural networks with a different number of hidden layers. 
