@@ -4,6 +4,7 @@
 #%% Clean Memory before rerunning
 for name in dir():
     if not name.startswith('_'): del globals()[name]
+    
 
 #%% libraries for dataset preparation, feature engineering, model training 
 from sklearn import model_selection, preprocessing, linear_model, naive_bayes, metrics, svm
