@@ -161,7 +161,7 @@ X, y = d.iloc[:,1:].values, d.iloc[:,0].values
 
 #%%
 print("Model 1: 1 Hiden Layer")
-# 1 Layers
+# 1 Layer
 from sklearn.model_selection import GroupKFold
 flatten = lambda mylist: [item for sublist in mylist for item in sublist]
 cmodel1_tprs = []
@@ -181,7 +181,7 @@ model1.add(Dense(300, activation='relu'))
 model1.add(Dense(1, kernel_initializer='uniform', activation='sigmoid'))
 sgd = optimizers.SGD(lr=0.01, decay=1e-6, momentum=0.9, nesterov=True)
 model1.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['accuracy'])
-
+i=0
 for train_index, test_index in group_kfold.split(np.log(X), y, speaker):
     X_train, X_test = X[train_index], X[test_index]
     y_train, y_test = y[train_index], y[test_index]
@@ -223,7 +223,7 @@ for train_index, test_index in group_kfold.split(np.log(X), y, speaker):
     cmodel1_aucs.append(cmodel1_roc_auc)
 
 
-    #i += 1
+    i += 1
     print("sNN Accuracy A: {}".format(cmodel1_resultsA))
     print("sNN Accuracy B: {}".format(cmodel1_resultsB))
     print("sNN ROC_AUC: {}".format(cmodel1_roc_auc))
